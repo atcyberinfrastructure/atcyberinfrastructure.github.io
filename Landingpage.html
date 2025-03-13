@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SICHERHEITSWARNUNG</title>
+    <style>
+        body {
+            background-color: #111;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .warning-header {
+            font-size: 36px;
+            color: #ff0000;
+            margin-top: 30px;
+            animation: blink 0.8s infinite;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+        }
+        
+        .warning-icon {
+            font-size: 100px;
+            margin: 20px 0;
+            animation: rotate 2s infinite;
+            color: #ff0000;
+        }
+        
+        .warning-text {
+            font-size: 22px;
+            margin: 15px 0;
+            line-height: 1.4;
+        }
+        
+        .alert-box {
+            background-color: rgba(255, 0, 0, 0.2);
+            border: 2px solid #ff0000;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            animation: pulse 2s infinite;
+        }
+        
+        .countdown {
+            font-size: 32px;
+            margin: 15px 0;
+            color: #ff0000;
+        }
+        
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        .button {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 20px 0;
+            border-radius: 5px;
+            animation: pulse 2s infinite;
+            display: inline-block;
+            width: 80%;
+            max-width: 300px;
+            touch-action: manipulation;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+            100% { transform: rotate(-10deg); }
+        }
+        
+        .data-theft {
+            width: 100%;
+            height: 25px;
+            background-color: red;
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .data-theft:before {
+            content: "";
+            position: absolute;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(0, 0, 0, 0.2),
+                rgba(0, 0, 0, 0.2) 10px,
+                rgba(0, 0, 0, 0.3) 10px,
+                rgba(0, 0, 0, 0.3) 20px
+            );
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            animation: move 5s linear infinite;
+        }
+        
+        @keyframes move {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+        
+        .explanation {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333;
+            border: 2px solid #ff0000;
+            padding: 15px;
+            width: 85%;
+            max-width: 350px;
+            z-index: 100;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            animation: popup 0.3s ease-out;
+        }
+        
+        .popup h3 {
+            font-size: 20px;
+            margin-top: 5px;
+        }
+        
+        .popup p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        
+        .popup button {
+            padding: 12px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        @keyframes popup {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            80% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 99;
+        }
+        
+        /* Mobile Optimierungen */
+        @media (max-width: 768px) {
+            .warning-header {
+                font-size: 28px;
+                margin-top: 20px;
+            }
+            
+            .warning-icon {
+                font-size: 80px;
+                margin: 15px 0;
+            }
+            
+            .warning-text {
+                font-size: 18px;
+                margin: 10px 0;
+            }
+            
+            .countdown {
+                font-size: 28px;
+            }
+            
+            .alert-box {
+                padding: 10px;
+            }
+            
+            .explanation {
+                padding: 15px;
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .warning-header {
+                font-size: 24px;
+            }
+            
+            .warning-icon {
+                font-size: 70px;
+            }
+            
+            .warning-text {
+                font-size: 16px;
+            }
+            
+            .countdown {
+                font-size: 24px;
+            }
+            
+            /* Matrix-Effekt für sehr kleine Geräte optimieren */
+            .matrix-bg {
+                opacity: 0.05;
+            }
+            
+            .popup {
+                width: 90%;
+                padding: 10px;
+            }
+            
+            .popup h3 {
+                font-size: 18px;
+            }
+            
+            .popup p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix" class="matrix-bg"></canvas>
+    
+    <!-- Hack-Screen (Initial) -->
+    <div id="hackScreen" class="container">
+        <div class="warning-header">⚠️ SICHERHEITSWARNUNG ⚠️</div>
+        <div class="warning-icon">☠️</div>
+        <div class="warning-text">IHR SYSTEM WURDE KOMPROMITTIERT!</div>
+        
+        <div class="alert-box">
+            <div class="warning-text">Ihre persönlichen Daten werden gerade gestohlen:</div>
+            <div class="data-theft"></div>
+            <div id="dataProgress">DATENDIEBSTAHL: 0%</div>
+            
+            <div class="countdown" id="countdown">00:15</div>
+        </div>
+        
+        <div class="warning-text">
+            Passwörter, Kontodaten und vertrauliche Firmendokumente sind akut gefährdet!
+        </div>
+        
+        <div class="button" onclick="showExplanation()">JETZT SYSTEM SCANNEN</div>
+    </div>
+    
+    <!-- Explanation Screen (Hidden initially) -->
+    <div id="explanationScreen" class="container hidden">
+        <div class="explanation">
+            <p>Dies war eine Simulation. In einer echten Situation wären Ihre Daten jetzt in Gefahr. Diese Seite ist Teil einer Cybersecurity-Schulung.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Matrix-Canvas-Größe an Browser-Umgebung anpassen
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        let matrixAnimationActive = true;
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        // Initial und bei Größenänderung Canvas anpassen
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Performance-Kontrolle für Mobile
+        function checkPerformance() {
+            // Prüfen der Bildschirmgröße für Geräteoptimierung
+            if (window.innerWidth < 600) {
+                // Reduzierte Komplexität für Mobilgeräte
+                return 0.6;
+            } else if (window.innerWidth < 1024) {
+                // Mittlere Komplexität für Tablets
+                return 0.8;
+            }
+            // Volle Komplexität für Desktop
+            return 1;
+        }
+        
+        const performanceLevel = checkPerformance();
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+{}[]|;:,.<>?/~`';
+        const fontSize = 14;
+        const columns = canvas.width/fontSize * performanceLevel;
+        
+        const drops = [];
+        for(let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+        
+        function drawMatrix() {
+            if (!matrixAnimationActive) return;
+            
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+            
+            for(let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+                
+                if(drops[i]*fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                
+                drops[i]++;
+            }
+            
+            // Dynamische Anpassung der Animationsrate basierend auf Performance
+            setTimeout(drawMatrix, 50 / performanceLevel);
+        }
+        
+        // Countdown timer - 15 Sekunden
+        const totalSeconds = 15;
+        let seconds = totalSeconds;
+        const countdownEl = document.getElementById('countdown');
+        const dataProgressEl = document.getElementById('dataProgress');
+        
+        function updateCountdown() {
+            if (seconds <= 0) {
+                showExplanation();
+                return;
+            }
+            
+            // Update countdown
+            const displaySeconds = seconds < 10 ? '0' + seconds : seconds;
+            countdownEl.textContent = '00:' + displaySeconds;
+            
+            // Synchronisierter Progress-Counter
+            // Progress soll bei 1 Sekunde vor Ende bei 100% sein
+            const targetProgress = Math.min(100, Math.round(((totalSeconds - seconds) / (totalSeconds - 1)) * 100));
+            
+            // Fortschrittsanzeige aktualisieren
+            dataProgressEl.textContent = 'DATENDIEBSTAHL: ' + targetProgress + '%';
+            
+            seconds--;
+        }
+        
+        // Show random popup warnings - Mobile-optimierte Version
+        function showRandomPopup() {
+            if (document.getElementById('explanationScreen').classList.contains('hidden')) {
+                const messages = [
+                    "WARNUNG: Dateisystem kompromittiert!",
+                    "GEFAHR: Passwörter wurden entschlüsselt!",
+                    "ACHTUNG: Remote-Zugriff erkannt!",
+                    "KRITISCH: Firewall umgangen!",
+                    "WARNUNG: Datenbank wird kopiert!"
+                ];
+                
+                const message = messages[Math.floor(Math.random() * messages.length)];
+                
+                const overlay = document.createElement('div');
+                overlay.className = 'overlay';
+                
+                const popup = document.createElement('div');
+                popup.className = 'popup';
+                popup.innerHTML = `
+                    <h3 style="color: red; animation: blink 0.8s infinite;">${message}</h3>
+                    <button onclick="this.parentNode.remove(); document.querySelector('.overlay').remove();" 
+                            style="background: red; color: white; border: none; padding: 12px 20px; cursor: pointer; border-radius: 4px;">
+                        Schließen
+                    </button>
+                `;
+                
+                document.body.appendChild(overlay);
+                document.body.appendChild(popup);
+                
+                setTimeout(() => {
+                    if (popup.parentNode) {
+                        popup.remove();
+                        overlay.remove();
+                    }
+                }, 3000);
+            }
+        }
+        
+        // Show explanation screen
+        function showExplanation() {
+            document.getElementById('hackScreen').classList.add('hidden');
+            document.getElementById('explanationScreen').classList.remove('hidden');
+            clearInterval(countdownInterval);
+            clearInterval(popupInterval);
+            
+            // Matrix-Animation stoppen um Ressourcen freizugeben
+            matrixAnimationActive = false;
+        }
+        
+        // Höhere Pop-up-Frequenz für kurzen Timer
+        const popupDelay = window.innerWidth < 768 ? 7000 : 5000;
+        
+        // Initialize animations and timers
+        drawMatrix(); // Start mit optimierter Methode
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        
+        // Weniger Pop-ups auf Mobilgeräten zur Verbesserung der Benutzererfahrung
+        const popupInterval = setInterval(showRandomPopup, popupDelay);
+        
+        // Verzögertes erstes Popup um die Seite laden zu lassen
+        setTimeout(showRandomPopup, 3000);
+        
+        // Passive Event-Listener für bessere Touch-Performance
+        document.querySelectorAll('.button').forEach(button => {
+            button.addEventListener('touchstart', function() {}, { passive: true });
+        });
+    </script>
+</body>
+</html>

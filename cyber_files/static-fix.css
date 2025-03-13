@@ -1,0 +1,98 @@
+/*CSS fixes for modern non english sites, Mosaic Grid Issues Kartheek: 03/04 */
+
+/* DI Logo alignment issue fix*/
+.cmp-di-header__secondary-nav-wrapper .cmp-di-header__insights-title {
+    display: block;
+	margin-top: 3px;
+}
+.cmp-di-header__logo__title-wrapper img{
+	height: auto!important;
+}
+/* DI Logo alignment issue fix ends */
+
+/* Hide office promo on Global office location page */
+.global-office-locations-page .cmp-offices-details-promo--variant{
+	display: none;
+}
+/* Hide office promo on Global office location page ends */
+
+
+/* fix for 1756562 global site locator icon */
+.cmp-header__location-selector .icon-global:before{
+	content: "\e80f" !important;
+}
+
+/* fix for 1757347 */
+.cmp-share-bar__save-left .cmp-share-bar__links:hover {
+    text-decoration: none;
+}
+/* fix for 1757347 ends*/
+
+/* fix for 1766941 */
+@media screen and (min-width: 1024px){
+    .cmp-tabs-v2--fixed-size-description-and-border .cmp-tabs__tablist{
+        width: 100% !important;
+        max-width: initial !important;
+    }
+}
+/* fix for 1793790 */
+@media screen and (max-width:1200px) { 
+    .cmp-tabs-v2--fixed-size-description-and-border .cmp-tabs__tablist{    
+        width: 100% !important;  
+    }
+}
+
+/* pending fix for 1696144 */
+.cmp-promo__services .cmp-promo__content__desc,
+.cmp-promo__services .cmp-promo__content__title {
+    color: #000;
+}
+
+/* Fix IOC page scrolling issue on mobile */
+.custom--ioc-link-list.cmp-link-list-v3.fixed {
+    position: relative !important;
+    top: unset !important;
+    transition: unset !important;
+}
+
+/* Fix for 1955402 */
+.cmp-dual-slider .cmp-dual-slider__peek{
+    display: none;
+}
+/* Fix for 1955402 ends */
+
+/* Fix for tab header width 1974935 
+.cmp-tabs__shrinkTitleWidth.cmp-tabs--horizontal-line .cmp-tabs--horizontal .cmp-tabs__tablist-title{
+    width: auto!important;
+} */
+
+/* Fix for 1975015 */
+.cmp-modal-vertical-layout .cmp-modal__container img:not(.cmp-co-branding-img) {
+    aspect-ratio: auto!important;
+}
+/* Fix for 1975015 ends */
+
+/* Fix for 1975026 */
+.cmp-container__parallax .cmp-container__row>div:nth-child(2){
+    z-index: 1;
+}
+/* Fix for 1975026 ends */
+/*Fix for 2137781*/
+:lang(uk) {
+    font-family: 'Open Sans', Verdana, Helvetica, sans-serif !important;
+  }
+/*Fix for 2137781 ends*/
+/*Fix for 2137780*/
+html[dir=rtl] .cmp-mosaic-grid .aem-GridColumn--default--3, html[dir=rtl] .cmp-mosaic-grid .aem-GridColumn--default--4 ,html[dir=rtl] .cmp-mosaic-grid .aem-GridColumn--default--6,html[dir=rtl] .cmp-mosaic-grid .aem-GridColumn--default--8, html[dir=rtl] .cmp-mosaic-grid .aem-GridColumn--default--9 {
+    float: right!important
+}
+/*Fix for 2137780 ends*/
+
+/* Fix for 2170337 starts */
+
+@media screen and (max-width: 767px) {
+    .cmp-footer-v2--multi-linklist .cmp-footer-v2__top .cmp-footer-v2__links-section {
+      flex-basis: unset;
+    }
+}
+/* Fix for 2170337 ends */
